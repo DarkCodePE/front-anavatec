@@ -1,3 +1,4 @@
+
 .container{
     display: flex;
     align-items: center;
@@ -9,4 +10,21 @@ h1 {
     border: 1px solid rgb(161, 159, 159);
     padding: 1rem 10%;
     border-radius: 2rem;
+    background: #484c7f;
+    color: white;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
+.avatar-name {
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 10px 0 rgba(255,255,255,.35);
+    border-radius: 100px;
+    background-color: #484c7f;
+    color: white;
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+}
+

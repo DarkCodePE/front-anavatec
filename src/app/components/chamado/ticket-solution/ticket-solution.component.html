@@ -1,0 +1,53 @@
+<div class="container">
+    <h2>Crear Solucion</h2>
+    <form (submit)="submitSolution()" [formGroup]="solutionFormGroup" >
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Resumen: </mat-label>
+            <input id="title" formControlName="title" type="text" placeholder="Ingresa el resumen de la solucion" matInput>
+            <mat-icon matSuffix>pin</mat-icon>
+        </mat-form-field>
+      <!--  <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Seleccione un producto</mat-label>
+            <mat-select
+                    id="productId"
+                    type="text"
+                    formControlName="productId" required>
+                <mat-option *ngFor="let item of tickets" [value]="item.id"> {{item.titulo}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>-->
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Descripcion:</mat-label>
+            <textarea id="summary" formControlName="summary" type="text" placeholder="Ingresa el nombre del producto" row="3" class="observacoes" matInput></textarea>
+        </mat-form-field>
+        <div style="display: flex; gap: 20px;">
+            <input
+                    id="file"
+                    formControlName="imageUrl"
+                    #atachfileInput
+                    style="display: none;"
+                    accept="image/png"
+                    type="file" (change)="attachFileChange($event)" />
+            <button type="button"  (click)="atachfileInput.click()"
+                    style="margin-left: 0; width: 150px;" class="cli-btn btn-blue upload">
+                <div style="display: flex;align-items: center;min-width: 120px;">
+                    <mat-icon>file_upload</mat-icon> Cargar archivo
+                </div>
+            </button>
+            <div *ngIf="file != null" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center" class="file">
+                <div class="cvs">{{ file!.name }} <span class="c-orange" (click)="onDeleteFile()"><mat-icon>close</mat-icon></span></div>
+            </div>
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+            <!--   <div class="text-justify c-14 descrip">
+                   Peso máximo de hasta 3.5Mb en formato .doc, .docx o .pdf.
+               </div>-->
+        </div>
+        <div class="btn-solution-container">
+            <button [disabled]="solutionFormGroup.invalid" class="full-width mat-elevation-z2" mat-raised-button type="submit">Guardar</button>
+            <button type="button" class="full-width mat-elevation-z2" mat-stroked-button color="warn" (click)="closeModal()">Cancelar</button>
+        </div>
+    </form>
+</div>

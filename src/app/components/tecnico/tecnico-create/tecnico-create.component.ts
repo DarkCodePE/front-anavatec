@@ -19,7 +19,17 @@ export class TecnicoCreateComponent implements OnInit {
     email: '',
     senha: '',
     perfis: [],
-    dataCriacao: ''
+    dataCriacao: '',
+    profile: {
+        id: 0,
+        email: '',
+        phone: '',
+        address: '',
+        resume: '',
+        birthDate: '',
+        tecnicoId: 0,
+        avatar: ''
+    }
   }
 
   nome: FormControl = new FormControl(null, Validators.minLength(3));
@@ -43,7 +53,7 @@ export class TecnicoCreateComponent implements OnInit {
   create(): void {
     this.service.create(this.tecnico).subscribe({
       next: () => {
-      this.toast.success('Técnico cadastrado com sucesso', 'Cadastro');
+      this.toast.success('Técnico creado con exito', 'Registro');
       this.router.navigate(['tecnicos']);
       },
       error: (erro) => {

@@ -53,7 +53,7 @@ export class ClienteUpdateComponent implements OnInit {
   update(): void {
     this.service.update(this.cliente).subscribe({
       next: () => {
-        this.toast.success('Cliente atualizado com sucesso', 'Update');
+        this.toast.success('Cliente actulizado con exito', 'Update');
         this.router.navigate(['clientes']);
       },
       error: (erro) => {

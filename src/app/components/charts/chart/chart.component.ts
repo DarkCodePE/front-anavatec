@@ -76,7 +76,7 @@ export class ChartComponent implements OnInit {
       this.myChart = new Chart(htmlRef, {
         type: 'bar',
         data: {
-          labels: ['BAIXA', 'MEDIA', 'ALTA'],
+          labels: ['BAJA', 'MEDIA', 'ALTA'],
           datasets: [{
             backgroundColor: [
               'rgba(75, 192, 192, 0.2)',
@@ -88,7 +88,7 @@ export class ChartComponent implements OnInit {
               'rgba(54, 162, 235)',
               'rgba(153, 102, 255)'
             ],
-            label: 'Prioridade dos Chamados',
+            label: 'Tickets por prioridad',
             data: [this.prioridade[0], this.prioridade[1], this.prioridade[2]],
             borderWidth: 1
           }]
@@ -106,7 +106,7 @@ export class ChartComponent implements OnInit {
       this.myChart = new Chart(htmlRef2, {
         type: 'bar',
         data: {
-          labels: ['ABERTO', 'EM ANDAMENTO', 'ENCERRADO'],
+          labels: ['ABIERTA', 'EN PROCESO', 'CERRADO'],
           datasets: [{
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -144,7 +144,7 @@ export class ChartComponent implements OnInit {
             borderColor: [
               'rgba(54, 162, 235)'
             ],
-            label: 'Técnico x Chamado',
+            label: 'Técnico x Tickets',
             data: counterTecChamados,
             borderWidth: 1
           }]

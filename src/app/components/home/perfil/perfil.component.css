@@ -1,0 +1,33 @@
+.mat-icon-custom {
+    -webkit-user-select: none;
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    width: auto !important;
+    height: auto !important;
+    font-size: 50px !important;
+}
+.camara-avatar{
+    position: absolute!important;
+    right: 0;
+    top: 2.5em;
+}
+.camara-avatar-button{
+    position: absolute!important;
+    right: 5%;
+    bottom: 10%;
+}
+.avatar-name {
+    width: 120px;
+    height: 120px;
+    box-shadow: 0 0 10px 0 rgba(255,255,255,.35);
+    border-radius: 100px;
+    background-color: #484c7f;
+    color: white;
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+}

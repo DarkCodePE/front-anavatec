@@ -1,18 +1,350 @@
-<mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Help Desk</mat-card-title>
-      <mat-card-subtitle>Projeto TCC</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="assets/img/home-image.svg" alt="Image Home Help Desk">
-    <mat-card-content>
-        <p>
-            Olá! Seja bem vindo ao sistema Help Desk desenvolvido por: Peterson, Davi e David<br />
-            Esse é um sistema para gerenciamento de chamados simulando um simples Help Desk desenvolvido em Angular 12 e
-            Spring Boot 2. <br /> O sistema foi criado para o nosso projeto de TCC<br />
-            O projeto tem como objetivo principal abordar os conceitos de aplicações SPAs, Autenticação e Autorização com
-            Tokens JWT e muito mais. O código fonte do projeto pode ser acessado clicando no link Github no menu lateral.
-            <br /><br /> Fique a vontade para testar o sistema e deixar sua sugestão.
-            <br />
-           </p>
-    </mat-card-content>
-  </mat-card>
+<div class="main px-lg-12 px-md-12">
+
+    <!-- Body: Body -->
+    <div class="body d-flex py-3">
+        <div class="container-xxl">
+            <div class="row g-3 mb-3 row-deck">
+                <div class="col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar lg  rounded-1 no-thumbnail bg-lightyellow color-defult"><mat-icon class="bi bi-journal-check fs-4">format_list_bulleted</mat-icon></div>
+                                <div class="flex-fill ms-4">
+                                    <div class="">Total tickets creados</div>
+                                    <h5 class="mb-0 ">{{ totalTicketCreated }}</h5>
+                                </div>
+                                <a href="task.html" title="view-members" class="btn btn-link text-decoration-none  rounded-1"><i class="icofont-hand-drawn-right fs-2 "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar lg  rounded-1 no-thumbnail bg-lightblue color-defult"><mat-icon class="bi bi-list-check fs-4">checklist</mat-icon></div>
+                                <div class="flex-fill ms-4">
+                                    <div class="">Total de tickets asignados</div>
+                                    <h5 class="mb-0 ">{{ totalTicketAssigned }}</h5>
+                                </div>
+                                <a href="task.html" title="space-used" class="btn btn-link text-decoration-none  rounded-1"><i class="icofont-hand-drawn-right fs-2 "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar lg  rounded-1 no-thumbnail bg-lightgreen color-defult"><mat-icon class="bi bi-clipboard-data fs-4">emoji_objects</mat-icon></div>
+                                <div class="flex-fill ms-4">
+                                    <div class="">Total de tickets solucionados</div>
+                                    <h5 class="mb-0 ">{{ totalTicketResolved }}</h5>
+                                </div>
+                                <a href="task.html" title="renewal-date" class="btn btn-link text-decoration-none  rounded-1"><i class="icofont-hand-drawn-right fs-2 "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Row End -->
+            <div class="row g-3 mb-3 row-deck">
+                <div class="col-md-12">
+                    <div class="card light-danger-bg">
+                        <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
+                            <h6 class="mb-0 fw-bold ">Mejor desempeñor</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-md-12 col-lg-4 col-xl-4 col-xxl-2">
+                                    <p>Tu tienes {{ top.totalTechnician}} <span class="fw-bold">Tecnicos </span> en tu compañia.</p>
+                                    <div class="d-flex  justify-content-between text-center">
+                                        <div class="">
+                                            <h3 class="fw-bold">{{top.total}}</h3>
+                                            <span class="small">total de tickets</span>
+                                        </div>
+                                        <div class="">
+                                            <h3 class="fw-bold">{{top.totalSolved}}</h3>
+                                            <span class="small">Tickets resueltos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-10">
+                                    <div class="row g-3 row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-6 row-deck top-perfomer">
+                                        <div class="col" *ngFor="let data of top.topTechnician">
+                                            <div class="card shadow">
+                                                <div class="card-body text-center d-flex flex-column justify-content-center">
+                                                    <img class="avatar lg rounded-circle img-thumbnail mx-auto" src="assets/img/lg/avatar2.jpg" alt="profile">
+                                                    <h6 class="fw-bold my-2 small-14">{{data.nome}}</h6>
+                                                    <span class="text-muted mb-2">{{data.email}}</span>
+                                                    <h4 class="fw-bold text-primary fs-3">{{ (data.quantidade / top.totalSolved) * 100 | number:'1.0-0' }} %</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Row End -->
+            <div class="row g-3 mb-3 row-deck">
+                <div class="col-lg-12 col-md-12 flex-column">
+                    <div class="row g-3 row-deck">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-3 fw-bold ">Carga de trabajo por persona</h6>
+                                    <div class="mt-3" id="incomeanalytics">
+                                        <div id="chart">
+                                            <apx-chart
+                                                    [series]="chartOptions.series"
+                                                    [chart]="chartOptions.chart"
+                                                    [labels]="chartOptions.labels"
+                                                    [responsive]="chartOptions.responsive"
+                                            ></apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="card">
+                                <div class="card-header py-3">
+                                    <h6 class="mb-0 fw-bold ">actividad reciente</h6>
+                                </div>
+                                <div class="card-body mem-list">
+                                    <div class="timeline-item ti-danger border-bottom ms-2">
+                                        <div class="d-flex">
+                                            <span class="avatar d-flex justify-content-center align-items-center rounded-circle light-success-bg">RH</span>
+                                            <div class="flex-fill ms-3">
+                                                <div class="mb-1"><strong>Cerro una nueva tarea</strong></div>
+                                                <span class="d-flex text-muted">20Min ago</span>
+                                            </div>
+                                        </div>
+                                    </div> <!-- timeline item end  -->
+                                    <div class="timeline-item ti-info border-bottom ms-2">
+                                        <div class="d-flex">
+                                            <span class="avatar d-flex justify-content-center align-items-center rounded-circle bg-careys-pink">SP</span>
+                                            <div class="flex-fill ms-3">
+                                                <div class="mb-1"><strong>Cerro una tarea</strong></div>
+                                                <span class="d-flex text-muted">40Min ago</span>
+                                            </div>
+                                        </div>
+                                    </div> <!-- timeline item end  -->
+                                    <div class="timeline-item ti-info border-bottom ms-2">
+                                        <div class="d-flex">
+                                            <span class="avatar d-flex justify-content-center align-items-center rounded-circle bg-careys-pink">MR</span>
+                                            <div class="flex-fill ms-3">
+                                                <div class="mb-1"><strong>Solucionado</strong></div>
+                                                <span class="d-flex text-muted">1Hr ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item ti-success  ms-2">
+                                        <div class="d-flex">
+                                            <span class="avatar d-flex justify-content-center align-items-center rounded-circle bg-lavender-purple">FL</span>
+                                            <div class="flex-fill ms-3">
+                                                <div class="mb-1"><strong>bloque</strong></div>
+                                                <span class="d-flex text-muted">1Day ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .card: My Timeline -->
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12">
+                            <div class="card">
+                                <div class="card-header py-3">
+                                    <h6 class="mb-0 fw-bold ">Progreso de los tickets</h6>
+                                </div>
+                                <div class="card-body mem-list">
+                                    <div class="progress-count mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <h6 class="mb-0 fw-bold d-flex align-items-center">Abierto</h6>
+                                            <span class="small text-muted">10/40</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar light-info-bg" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-count mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <h6 class="mb-0 fw-bold d-flex align-items-center">En progreso</h6>
+                                            <span class="small text-muted">01/03</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-lightgreen" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-count mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <h6 class="mb-0 fw-bold d-flex align-items-center">Cerrado</h6>
+                                            <span class="small text-muted">02/07</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar light-success-bg" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-count mb-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <h6 class="mb-0 fw-bold d-flex align-items-center">Pruebas</h6>
+                                            <span class="small text-muted">01/05</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar light-orange-bg" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-count mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <h6 class="mb-0 fw-bold d-flex align-items-center">Solucionado</h6>
+                                            <span class="small text-muted">01/08</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-lightyellow" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Row End -->
+        </div>
+    </div>
+
+    <!-- Modal Members-->
+    <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="addUserLabel">Employee Invitation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="inviteby_email">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Email address" id="exampleInputEmail1" aria-describedby="exampleInputEmail1">
+                            <button class="btn btn-dark" type="button" id="button-addon2">Sent</button>
+                        </div>
+                    </div>
+                    <div class="members_list">
+                        <h6 class="fw-bold ">Employee </h6>
+                        <ul class="list-unstyled list-group list-group-custom list-group-flush mb-0">
+                            <li class="list-group-item py-3 text-center text-md-start">
+                                <div class="d-flex align-items-center flex-column flex-sm-column flex-md-column flex-lg-row">
+                                    <div class="no-thumbnail mb-2 mb-md-0">
+                                        <img class="avatar lg rounded-circle" src="assets/img/xs/avatar2.jpg" alt="">
+                                    </div>
+                                    <div class="flex-fill ms-3 text-truncate">
+                                        <h6 class="mb-0  fw-bold">Rachel Carr(you)</h6>
+                                        <span class="text-muted">rachel.carr@gmail.com</span>
+                                    </div>
+                                    <div class="members-action">
+                                        <span class="members-role ">Admin</span>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn bg-transparent dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="icofont-ui-settings  fs-6"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#"><i class="icofont-ui-password fs-6 me-2"></i>ResetPassword</a></li>
+                                                <li><a class="dropdown-item" href="#"><i class="icofont-chart-line fs-6 me-2"></i>ActivityReport</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-3 text-center text-md-start">
+                                <div class="d-flex align-items-center flex-column flex-sm-column flex-md-column flex-lg-row">
+                                    <div class="no-thumbnail mb-2 mb-md-0">
+                                        <img class="avatar lg rounded-circle" src="assets/img/xs/avatar3.jpg" alt="">
+                                    </div>
+                                    <div class="flex-fill ms-3 text-truncate">
+                                        <h6 class="mb-0  fw-bold">Lucas Baker<a href="#" class="link-secondary ms-2">(Resend invitation)</a></h6>
+                                        <span class="text-muted">lucas.baker@gmail.com</span>
+                                    </div>
+                                    <div class="members-action">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn bg-transparent dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Members
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="icofont-check-circled"></i>
+
+                                                        <span>All operations permission</span>
+                                                    </a>
+
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="fs-6 p-2 me-1"></i>
+                                                        <span>Only Invite & manage team</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn bg-transparent dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="icofont-ui-settings  fs-6"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#"><i class="icofont-delete-alt fs-6 me-2"></i>Delete Member</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-3 text-center text-md-start">
+                                <div class="d-flex align-items-center flex-column flex-sm-column flex-md-column flex-lg-row">
+                                    <div class="no-thumbnail mb-2 mb-md-0">
+                                        <img class="avatar lg rounded-circle" src="assets/img/xs/avatar8.jpg" alt="">
+                                    </div>
+                                    <div class="flex-fill ms-3 text-truncate">
+                                        <h6 class="mb-0  fw-bold">Una Coleman</h6>
+                                        <span class="text-muted">una.coleman@gmail.com</span>
+                                    </div>
+                                    <div class="members-action">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn bg-transparent dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Members
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="icofont-check-circled"></i>
+
+                                                        <span>All operations permission</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="fs-6 p-2 me-1"></i>
+                                                        <span>Only Invite & manage team</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="btn-group">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn bg-transparent dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="icofont-ui-settings  fs-6"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="#"><i class="icofont-ui-password fs-6 me-2"></i>ResetPassword</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="icofont-chart-line fs-6 me-2"></i>ActivityReport</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="icofont-delete-alt fs-6 me-2"></i>Suspend member</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="icofont-not-allowed fs-6 me-2"></i>Delete Member</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

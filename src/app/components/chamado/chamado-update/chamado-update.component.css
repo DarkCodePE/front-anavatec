@@ -34,3 +34,11 @@ img {
 button {
     margin-top: .5rem;
 }
+.btn-solution-container{
+    display: flex;
+    gap: 20px
+}
+.btn-open-modal-solution{
+    width: max-content;
+    margin-bottom: 20px;
+}

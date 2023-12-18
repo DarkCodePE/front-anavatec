@@ -1,34 +1,111 @@
-<div class="container">
-    <form class="form mat-elevation-z2">
+<div id="mytask-layout" class="theme-indigo">
 
-        <h1>Help Desk</h1>
+    <!-- main body area -->
+    <div class="main p-2 py-3 p-xl-5 ">
 
-        <img src="assets/img/login-image.svg" alt="Help Desk Image">
+        <!-- Body: Body -->
+        <div class="body d-flex p-0 p-xl-5">
+            <div class="container-xxl">
 
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>E-mail</mat-label>
-            <input
-            [formControl]="email"
-            required
-            [(ngModel)]="creds.email"
-            name="email"
-            matInput placeholder="exemplo@mail.com">
-            <mat-icon matSuffix>email</mat-icon>
-        </mat-form-field>
+                <div class="row g-0">
+                    <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center rounded-lg auth-h100">
+                        <div style="max-width: 25rem;">
+                            <div class="text-center">
+                                <img src="../assets/img/logo-preview.png" alt="" width="4rem" class="img-responsive" style="margin: 0">
+                            </div>
+                            <div class="mb-5">
+                                <h2 class="color-900 text-center">Sistema de soporte</h2>
+                            </div>
+                            <!-- Image block -->
+                            <div class="">
+                                <img src="../assets/img/login-img.svg" alt="login-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center border-0 rounded-lg auth-h100">
+                        <div class="w-100 p-3 p-md-5 card border-0 bg-dark text-light" style="max-width: 32rem;">
+                            <!-- Form -->
+                            <form class="row g-1 p-3 p-md-4" [formGroup]="loginFormGroup">
+                                <div class="col-12 text-center mb-1 mb-lg-4 d-flex flex-md-column g-2">
+                                    <h1>Inicio de Sesión</h1>
+                                    <span>Bienvenido a nuestro sistema de tickets de soporte</span>
+                                </div>
+                                <div class="col-12 text-center mb-4">
+                                    <a class="btn btn-lg btn-outline-secondary btn-block" href="#">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <img class="avatar xs me-2" src="../assets/img/google.svg" alt="Image Description">
+                                            Conectarse con Google
+                                        </span>
+                                    </a>
+                                    <span class="dividers text-muted mt-4">OR</span>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-2">
+                                        <label class="form-label">Correo electrónico</label>
+                                        <input type="email"
+                                               id="email" formControlName="email"
+                                               matInput placeholder="ejemplo@mail.com"
+                                               class="form-control form-control-lg"
+                                               [ngClass]="{
+                                                        'is-invalid':
+                                                          loginFormGroup.get('email')?.invalid && loginFormGroup.get('email')?.touched
+                                                      }"
+                                        >
+                                        <div
+                                                *ngIf="loginFormGroup.get('email')?.invalid && loginFormGroup.get('email')?.touched"
+                                                class="invalid-feedback"
+                                        >
+                                            email es requerida
+                                        </div>
+                                    </div>
 
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Senha</mat-label>
-            <input
-            [formControl]="senha"
-            required
-            [(ngModel)]="creds.senha"
-            name="senha" type="password"
-            matInput placeholder="123">
-            <mat-icon matSuffix>password</mat-icon>
-        </mat-form-field>
-
-        <button (click)="logar()" [disabled]="!validaCampos()" class="full-width" mat-stroked-button color="primary">Login</button>
-    
-    </form>
-
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-2">
+                                        <div class="form-label">
+                                            <span class="d-flex justify-content-between align-items-center">
+                                                Contraseña
+                                                <a class="text-secondary"
+                                                   href="auth-password-reset.html">¿Olvidaste tu contraseña?</a>
+                                            </span>
+                                        </div>
+                                        <input id="senha"
+                                                type="password"
+                                               formControlName="senha" class="form-control form-control-lg" placeholder="***************" autocomplete="on"
+                                               [ngClass]="{
+                                                'is-invalid':
+                                                  loginFormGroup.get('senha')?.invalid && loginFormGroup.get('senha')?.touched
+                                              }"
+                                        >
+                                        <div
+                                                *ngIf="
+                                                    loginFormGroup.get('senha')?.invalid && loginFormGroup.get('senha')?.touched
+                                                  "
+                                                class="invalid-feedback">
+                                            La contraseña es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Acuérdate de mí
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <a (click)="logar()" class="btn btn-lg btn-block btn-light lift text-uppercase" atl="signin">Ingresar</a>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <span class="text-muted">¿Aún no tienes una cuenta? <a href="auth-signup.html" class="text-secondary">Registrate aquí</a></span>
+                                </div>
+                            </form>
+                            <!-- End Form -->
+                        </div>
+                    </div>
+                </div> <!-- End Row -->
+            </div>
+        </div>
+    </div>
 </div>

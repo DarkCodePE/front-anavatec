@@ -1,6 +1,6 @@
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
-    <img src="assets/img/side-image.svg" alt="Imagem de navegação">
+    <img src="assets/img/logo-preview.png" alt="Imagem de navegação">
       <mat-nav-list class="nav-list">
         <a mat-list-item routerLink="home">
             <i class="material-icons">home</i>
@@ -19,17 +19,23 @@
 
         <a mat-list-item routerLink="chamados">
           <i class="material-icons">support</i>
-          Chamados
+          Tickets
         </a>
-
+          <a mat-list-item routerLink="product">
+              <i class="material-icons">support</i>
+              Productos
+          </a>
+          <a mat-list-item routerLink="category">
+              <i class="material-icons">support</i>
+              Categoria
+          </a>
+          <a mat-list-item routerLink="soluciones">
+              <i class="material-icons">support</i>
+              Soluciones
+          </a>
         <a mat-list-item routerLink="graficos">
           <i class="material-icons">analytics</i>
           Graficos
-      </a>
-
-        <a mat-list-item href="https://github.com/petscaramussi/helpDesk" target="_blank">
-            <i class="material-icons">code</i>
-            GitHub
         </a>
 
         <a mat-list-item (click)="logout()">

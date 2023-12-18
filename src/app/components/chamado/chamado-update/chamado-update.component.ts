@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Chamado } from 'src/app/models/chamado';
@@ -8,6 +8,10 @@ import { Tecnico } from 'src/app/models/tecnico';
 import { ChamadoService } from 'src/app/services/chamado.service';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { TecnicoService } from 'src/app/services/tecnico.service';
+import {filter, switchMap} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {SolutionFormStore} from "../../../store/solutionForm.store";
+import {TicketSolutionComponent} from "../ticket-solution/ticket-solution.component";
 
 @Component({
   selector: 'app-chamado-update',
@@ -15,6 +19,7 @@ import { TecnicoService } from 'src/app/services/tecnico.service';
   styleUrls: ['./chamado-update.component.css']
 })
 export class ChamadoUpdateComponent implements OnInit {
+  private createSolutionLoading: boolean;
 
   chamado: Chamado = {
     prioridade: '',
@@ -24,13 +29,14 @@ export class ChamadoUpdateComponent implements OnInit {
     tecnico: '',
     cliente: '',
     nomeCliente: '',
-    nomeTecnico: ''
-
+    nomeTecnico: '',
+    productId: 0,
+    solution:false,
+    isSolution: false
   }
 
   clientes: Cliente[] = [];
   tecnicos: Tecnico[] = [];
-
   prioridade: FormControl = new FormControl(null, [Validators.required])
   status: FormControl = new FormControl(null, [Validators.required])
   titulo: FormControl = new FormControl(null, [Validators.required])
@@ -44,7 +50,10 @@ export class ChamadoUpdateComponent implements OnInit {
     private tecnicoService: TecnicoService,
     private toastService: ToastrService,
     private router: Router,
-    private route: ActivatedRoute 
+    private route: ActivatedRoute,
+    public formBuilder: FormBuilder,
+    private solutionFormStore: SolutionFormStore,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +66,7 @@ export class ChamadoUpdateComponent implements OnInit {
   findById(): void {
     this.chamadoService.findById(this.chamado.id).subscribe({
       next: (resposta) => {
+        console.log(resposta)
         this.chamado = resposta;
       },
       error: (ex) => {
@@ -65,16 +75,21 @@ export class ChamadoUpdateComponent implements OnInit {
     })
   }
 
+  onDeleteFile() {
+
+  }
   update(): void {
-    this.chamadoService.update(this.chamado).subscribe({
-      next: () => {
-      this.toastService.success('Chamado atualizado com sucesso', 'Atualizar chamado');
-      this.router.navigate(['chamados']);
-      },
-    error: (erro) => {
-      this.toastService.error(erro.error.error);
-    } 
-  })
+    this.createSolutionLoading = true;
+      this.createSolutionLoading = false;
+      this.chamadoService.update(this.chamado).subscribe({
+        next: () => {
+          this.toastService.success('Ticket actualizado exitosamente', 'Actualizar ticket');
+          this.router.navigate(['chamados']);
+        },
+        error: (erro) => {
+          this.toastService.error(erro.error.error);
+        }
+      })
   }
 
   findAllClientes(): void {
@@ -100,25 +115,45 @@ export class ChamadoUpdateComponent implements OnInit {
 
   retornaStatus(status: any): string {
     if(status == '0') {
-      return 'ABERTO'
+      return 'ABIERTO'
     }
     else if(status == '1') {
-      return 'EM ANDAMENTO'
+      return 'EN PROCESO'
     } else {
-      return 'ENCERRADO'
+      return 'CERRADO'
     }
   }
 
   retornaPrioridade(prioridade: any): string {
     if(prioridade == '0') {
-      return 'BAIXA'
+      return 'BAJA'
     }
     else if(prioridade == '1') {
-      return 'MÉDIA'
+      return 'MEDIA'
     } else {
       return 'ALTA'
     }
   }
 
+  OpenModal() {
+    this.dialog.open(TicketSolutionComponent, {
+      panelClass: 'custom-modalbox',
+      width: 'auto',
+      height: 'auto',
+      maxHeight: '88vh',
+      data:{
+        ticketId: this.chamado.id
+      }
+    }).afterClosed()
+        .subscribe((result?: boolean) => {
+          if (result===true) {
+            console.log(result)
+          }
+        });
+  }
+
+  submitSolution() {
+
+  }
 
 }

@@ -1,0 +1,59 @@
+<div class="container">
+    <form class="form" [formGroup]="productFormGroup" (submit)="enviar()">
+    <h1 class="fullWidth">Crear Producto</h1>
+  <!--  <img class="fullWidth"  src="assets/img/tecnico-create.svg" alt="Imagem de logo">-->
+
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>SKU: </mat-label>
+        <!--<input [(ngModel)]="tecnico.nome" name="nome" [formControl]="nome" required matInput placeholder="Ex: Fulado de tal" maxlength="50">-->
+        <input id="sku" formControlName="sku" type="text" maxlength="10" placeholder="Ingresa el sku del producto" matInput>
+        <mat-icon matSuffix>badge</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Nombre: </mat-label>
+        <input id="title" formControlName="title" type="text" placeholder="Ingresa el nombre del producto" matInput>
+        <mat-icon matSuffix>pin</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Categoria: </mat-label>
+        <mat-select id="categoryId"
+                formControlName="categoryId" class="cli-input-white">
+            <mat-option *ngFor="let item of categories" [value]="item.id"> {{item.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Descripcion:</mat-label>
+        <textarea id="summary" formControlName="summary" type="text" placeholder="Ingresa el nombre del producto" row="3" class="observacoes" matInput></textarea>
+    </mat-form-field>
+      <div style="display: flex; gap: 20px;">
+            <input
+                    id="file"
+                    formControlName="fileSaver"
+                    #atachfileInput
+                    style="display: none;"
+                    accept="image/png"
+                    type="file" (change)="attachFileChange($event)" />
+            <button type="button"  (click)="atachfileInput.click()"
+                    style="margin-left: 0; width: 150px;" class="cli-btn btn-blue upload">
+                <div style="display: flex;align-items: center;min-width: 120px;">
+                    <mat-icon>file_upload</mat-icon> Cargar archivo
+                </div>
+            </button>
+            <div *ngIf="file != null" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center" class="file">
+                  <div class="cvs">{{ file!.name }} <span class="c-orange" (click)="onDeleteFile()"><mat-icon>close</mat-icon></span></div>
+              </div>
+              <div *ngIf="errorMessage" class="error-message">
+                  {{ errorMessage }}
+              </div>
+         <!--   <div class="text-justify c-14 descrip">
+                Peso máximo de hasta 3.5Mb en formato .doc, .docx o .pdf.
+            </div>-->
+      </div>
+    <button [disabled]="productFormGroup.invalid" class="full-width mat-elevation-z2" mat-raised-button type="submit">Guardar</button>
+    <button class="full-width mat-elevation-z2" mat-stroked-button color="warn" (click)="closeModal()">Cancelar</button>
+</form>
+</div>

@@ -1,8 +1,8 @@
 <div class="container">
 
-    <h1>Listando Chamados</h1>
+    <h1>Listando Incidencias</h1>
   
-    <button routerLink="create" mat-stroked-button color="primary">Novo chamado</button>
+    <button routerLink="create" mat-stroked-button color="primary">Nueva Incidencia</button>
   
     <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>
@@ -10,9 +10,9 @@
     </mat-form-field>
 
     <mat-radio-group color="primary">
-        <mat-radio-button (click)="orderByStatus(0)" value="0">ABERTO</mat-radio-button>
-        <mat-radio-button (click)="orderByStatus(1)" value="1">ANDAMENTO</mat-radio-button>
-        <mat-radio-button (click)="orderByStatus(2)" value="2">ENCERRADO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(0)" value="0">ABIERTO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(1)" value="1">EN PROGRESO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(2)" value="2">CERRADO</mat-radio-button>
     </mat-radio-group>
   
       <div class="mat-elevation-z8">
@@ -39,12 +39,13 @@
               </ng-container>
         
             <ng-container matColumnDef="DataAbertura">
-              <th mat-header-cell *matHeaderCellDef> Data de Abertura </th>
-              <td mat-cell *matCellDef="let element"> {{element.dataAbertura}} </td>
+              <th mat-header-cell *matHeaderCellDef>
+                 Fecha de apertura </th>
+              <td mat-cell *matCellDef="let element"> {{element.dataAbertura.toLocaleString()}} </td>
             </ng-container>
 
             <ng-container matColumnDef="prioridade">
-                <th mat-header-cell *matHeaderCellDef> Prioridade </th>
+                <th mat-header-cell *matHeaderCellDef> Prioridad </th>
                 <td mat-cell *matCellDef="let element"> {{retornaPrioridade(element.prioridade)}} </td>
             </ng-container>
 
@@ -54,7 +55,7 @@
             </ng-container>
   
             <ng-container matColumnDef="acoes">
-              <th mat-header-cell *matHeaderCellDef> Ações </th>
+              <th mat-header-cell *matHeaderCellDef> Acciones  </th>
               <td mat-cell *matCellDef="let element">
                   <a routerLink="update/{{ element.id }}">
                     <i class="material-icons edit">edit</i>

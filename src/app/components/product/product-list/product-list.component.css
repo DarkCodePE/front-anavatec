@@ -1,0 +1,109 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 90vw;
+}
+.wrap {
+    width: 150px;
+    height: 150px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.mat-column-precio {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 40% !important;
+    width: 40% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.frame {
+    width: 1200px;
+    height: 1800px;
+    border: 0;
+    -ms-transform: scale(0.20);
+    -moz-transform: scale(0.20);
+    -o-transform: scale(0.20);
+    -webkit-transform: scale(0.20);
+    transform: scale(0.20);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+table {
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.edit {
+    color: rgb(98, 98, 255);
+}
+
+.delete {
+    color: rgb(250, 106, 106);
+}
+
+.card-title {
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+.product-card .card {
+    margin: 20px;
+    overflow: hidden;
+}
+.product-card .card .card-content {
+    padding: 5px;
+}
+.product-card .card .price {
+    width: 70px;
+    height: 70px;
+    font-weight: 600;
+    font-size: 1.45rem;
+    line-height: 70px;
+    margin: 10px;
+    position: absolute;
+    top: 0;
+    letter-spacing: 0;
+}
+.product-card ul.card-action-buttons {
+    margin: -18px 7px 0 0;
+    text-align: right;
+}
+.product-card ul.card-action-buttons li {
+    display: inline-flex;
+    padding-left: 7px;
+}
+.product {
+    width: 50%;
+    padding: 10px;
+}
+.product .card {
+    margin: 0;
+}
+.product .card .card-content {
+    padding: 5px 10px;
+}

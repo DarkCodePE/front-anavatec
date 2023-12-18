@@ -1,0 +1,19 @@
+
+<div class="container">
+    <form class="form d-flex flex-md-column" [formGroup]="categoryFormGroup" (submit)="enviar()">
+        <h1 class="fullWidth">Crear Categoria</h1>
+        <!--  <img class="fullWidth"  src="assets/img/tecnico-create.svg" alt="Imagem de logo">-->
+
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Name: </mat-label>
+            <input id="title" formControlName="name" type="text" placeholder="Ingresa el nombre de la categoria" matInput>
+            <mat-icon matSuffix>pin</mat-icon>
+        </mat-form-field>
+
+        <div class="d-flex gap-4 justify-content-center">
+            <button type="submit" [disabled]="categoryFormGroup.invalid" class="full-width mat-elevation-z2" mat-raised-button type="submit">Guardar</button>
+            <button type="button" class="full-width mat-elevation-z2" mat-stroked-button color="warn" (click)="closeModal()">Cancelar</button>
+        </div>
+    </form>
+</div>

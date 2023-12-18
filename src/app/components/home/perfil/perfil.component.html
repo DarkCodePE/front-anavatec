@@ -1,0 +1,249 @@
+<!--{{(profile$ | async) | json}}-->
+<div class="body d-flex py-lg-3 py-md-2">
+    <div class="container-xxl">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="card border-0 mb-4 no-bg">
+                    <div class="card-header py-3 px-0 d-flex align-items-center  justify-content-between border-bottom">
+                        <h3 class=" fw-bold flex-fill mb-0">Informacion general</h3>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row End -->
+        <div class="row g-3">
+            <div class="col-xl-8 col-lg-12 col-md-12">
+                <div class="card teacher-card  mb-3">
+                    <div class="card-body d-flex teacher-fulldeatil">
+                        <div class="profile-teacher pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
+                            <a href="javascript:void(0)" class="position-relative" *ngIf="(profile$ | async)?.profile.avatar != ''">
+                                <img [src]="(profile$ | async)?.profile?.avatar" alt="avatar" class="avatar xl rounded-circle img-thumbnail shadow-sm">
+                                <span class="camara-avatar"><label for="file"><img src="./assets/img/iconCamera.svg" alt="camera"> </label><input id="file" type="file" class="fileInput d-none" (change)="uploadImageFile($event)"
+                                ></span>
+                            </a>
+
+                            <div *ngIf="(profile$ | async)?.nome != null && (profile$ | async)?.profile.avatar == ''" class="position-relative">
+                                <div class="avatar-name">{{
+                                    (profile$ | async)?.nome.split(' ')[0] + " " + (profile$ | async)?.nome.split(' ')[1] | namInit
+                                    }}</div>
+                                <span class="camara-avatar-button"><label for="file"><img src="./assets/img/iconCamera.svg" alt="camera"> </label><input id="file" type="file" class="fileInput d-none" (change)="uploadImageFile($event)"
+                                ></span>
+                            </div>
+                            <div class="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
+                                <h6 class="mb-0 fw-bold d-block fs-6">CEO</h6>
+                                <span class="text-muted small">CODIGO: PXL-0001</span>
+                            </div>
+                        </div>
+                        <div class="teacher-info border-start ps-xl-4 ps-md-4 ps-sm-4 ps-4 w-100">
+                            <div class="d-flex justify-content-between ">
+                                <h6  class="mb-0 mt-2  fw-bold d-block fs-6">{{(profile$ | async)?.nome}}</h6>
+                                <button (click)="OpenModal()"   class="full-width mat-elevation-z2" mat-raised-button color="primary" ><mat-icon>edit_note</mat-icon> Editar perfil</button>
+                            </div>
+                            <span class="py-1 fw-bold small-11 mb-0 mt-1 text-muted">Senior</span>
+                            <p class="mt-2 small">The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout. A practice not without controversy</p>
+                            <div class="row g-2 pt-2">
+                                <div class="col-xl-5">
+                                    <div class="d-flex align-items-center">
+                                        <mat-icon class="icofont-ui-touch-phone">phone_iphone</mat-icon>
+                                        <span class="ms-2 small">{{(profile$ | async)?.profile.phone}} </span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5">
+                                    <div class="d-flex align-items-center">
+                                        <mat-icon class="icofont-email">mail</mat-icon>
+                                        <span class="ms-2 small">{{(profile$ | async)?.email}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5">
+                                    <div class="d-flex align-items-center">
+                                        <mat-icon class="icofont-birthday-cake">cake</mat-icon>
+                                        <span class="ms-2 small">{{(profile$ | async)?.profile.birthDate}} </span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5">
+                                    <div class="d-flex align-items-center">
+                                        <mat-icon class="icofont-address-book">home</mat-icon>
+                                        <span class="ms-2 small">{{(profile$ | async)?.profile.address}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
+                                <h6 class="mb-0 fw-bold ">Resumen de labor</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 row-deck">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="card">
+                                            <div class="card-body ">
+                                                <mat-icon class="icofont-checked mat-icon-custom">fact_check</mat-icon>
+                                                <h6 class="mb-0 fw-bold small-14">Asignados</h6>
+                                                <span class="text-muted">400</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="card">
+                                            <div class="card-body ">
+                                                <mat-icon class="icofont-stopwatch mat-icon-custom">pending_actions</mat-icon>
+                                                <h6 class="mt-3 mb-0 fw-bold small-14">En progreso</h6>
+                                                <span class="text-muted">17</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="card">
+                                            <div class="card-body ">
+                                                <mat-icon class="icofont-ban mat-icon-custom">disabled_by_default</mat-icon>
+                                                <h6 class="mt-3 mb-0 fw-bold small-14">Cancelados</h6>
+                                                <span class="text-muted">06</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="card">
+                                            <div class="card-body ">
+                                                <mat-icon class="icofont-beach-bed mat-icon-custom">beach_access</mat-icon>
+                                                <h6 class="mt-3 mb-0 fw-bold small-14">Solucionados</h6>
+                                                <span class="text-muted">14</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
+                                <h6 class="mb-0 fw-bold ">Tickets vencidos en el dia</h6>
+                                <h4 class="mb-0 fw-bold ">423</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mt-3" id="apex-MainCategories"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-12 col-md-12">
+                <div class="card mb-3">
+                    <div class="card-header py-3">
+                        <h6 class="mb-0 fw-bold ">Actividad reciente</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="planned_task client_task">
+                            <div class="dd" data-plugin="nestable">
+                                <ol class="dd-list">
+                                    <li class="dd-item mb-3">
+                                        <div class="dd-handle">
+                                            <div class="task-info d-flex align-items-center justify-content-between">
+                                                <h6 class="light-info-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">UI/UX Design</h6>
+                                                <div class="task-priority d-flex flex-column align-items-center justify-content-center">
+                                                    <div class="avatar-list avatar-list-stacked m-0">
+                                                        <img class="avatar rounded-circle small-avt sm" src="assets/img/xs/avatar2.jpg" alt="">
+                                                        <img class="avatar rounded-circle small-avt sm" src="assets/img/xs/avatar1.jpg" alt="">
+                                                    </div>
+                                                    <span class="badge bg-warning text-end mt-1">Inprogress</span>
+                                                </div>
+                                            </div>
+                                            <p class="py-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
+                                                nec scelerisque massa.</p>
+                                            <div class="tikit-info row g-3 align-items-center">
+                                                <div class="col-sm">
+                                                </div>
+                                                <div class="col-sm text-end">
+                                                    <div class="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> Social Geek Made </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li class="dd-item mb-3">
+                                        <div class="dd-handle">
+                                            <div class="task-info d-flex align-items-center justify-content-between">
+                                                <h6 class="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">Website Design
+                                                </h6>
+                                                <div class="task-priority d-flex flex-column align-items-center justify-content-center">
+                                                    <div class="avatar-list avatar-list-stacked m-0">
+                                                        <img class="avatar rounded-circle small-avt sm" src="assets/img/xs/avatar7.jpg" alt="">
+                                                    </div>
+                                                    <span class="badge bg-danger text-end mt-1">Review</span>
+                                                </div>
+                                            </div>
+                                            <p class="py-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
+                                                nec scelerisque massa.</p>
+                                            <div class="tikit-info row g-3 align-items-center">
+                                                <div class="col-sm">
+                                                </div>
+                                                <div class="col-sm text-end">
+
+                                                    <div class="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> Practice to Perfect </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li class="dd-item mb-3">
+                                        <div class="dd-handle">
+                                            <div class="task-info d-flex align-items-center justify-content-between">
+                                                <h6 class="light-success-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">Quality Assurance
+                                                </h6>
+                                                <div class="task-priority d-flex flex-column align-items-center justify-content-center">
+                                                    <div class="avatar-list avatar-list-stacked m-0">
+                                                        <img class="avatar rounded-circle small-avt sm" src="assets/img/xs/avatar2.jpg" alt="">
+                                                        <img class="avatar rounded-circle small-avt sm" src="assets/img/xs/avatar1.jpg" alt="">
+                                                    </div>
+                                                    <span class="badge bg-success text-end mt-1">Completed</span>
+                                                </div>
+                                            </div>
+                                            <p class="py-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
+                                                nec scelerisque massa.</p>
+                                            <div class="tikit-info row g-3 align-items-center">
+                                                <div class="col-sm">
+                                                </div>
+                                                <div class="col-sm text-end">
+
+                                                    <div class="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> Social Geek Made</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li class="dd-item">
+                                        <div class="dd-handle">
+                                            <div class="task-info d-flex align-items-center justify-content-between">
+                                                <h6 class="light-info-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">UI/UX Design</h6>
+                                                <div class="task-priority d-flex flex-column align-items-center justify-content-center">
+                                                    <div class="avatar-list avatar-list-stacked m-0">
+                                                        <img class="avatar rounded-circle small-avt sm" src="assets/img/xs/avatar2.jpg" alt="">
+                                                        <img class="avatar rounded-circle small-avt sm" src="assets/img/xs/avatar1.jpg" alt="">
+                                                    </div>
+                                                    <span class="badge bg-warning text-end mt-1">Inprogress</span>
+                                                </div>
+                                            </div>
+                                            <p class="py-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
+                                                nec scelerisque massa.</p>
+                                            <div class="tikit-info row g-3 align-items-center">
+                                                <div class="col-sm">
+                                                </div>
+                                                <div class="col-sm text-end">
+                                                    <div class="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> Social Geek Made </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row End -->
+    </div>
+</div>

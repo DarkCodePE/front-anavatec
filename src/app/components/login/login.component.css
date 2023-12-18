@@ -1,3 +1,18 @@
+[class="theme-indigo"] {
+    --primary-color: #484c7f;
+    --secondary-color: #f19828;
+    --chart-color1: #484c7f;
+    --chart-color2: #f19828;
+    --chart-color3: #f5558d;
+    --chart-color4: #a7daff;
+    --chart-color5: #9cbf3b;
+    --chart-color6: #a0c1b8;
+    --chart-color7: #64868e;
+    --primary-gradient: linear-gradient(45deg, #f5558d, #ff1843);
+}
+.bg-dark{
+    background-color: #484c7f !important;
+}
 .container {
     position: absolute;
     height: 100%;

@@ -1,0 +1,59 @@
+
+<div class="container">
+
+    <h1>Lista de Productos</h1>
+    <div style="display: flex;justify-content: space-between;gap: 50vw; margin: 20px 0;">
+        <button mat-stroked-button color="primary" (click)="OpenModal()">Nuevo Producto</button>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="sku">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    {{element.sku}}
+<!--                    <input type="hidden" name="accessID" [(ngModel)]="element.sku" >-->
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="titulo">
+                <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    {{element.title}}
+                    <!--                    <input type="hidden" name="accessID" [(ngModel)]="element.sku" >-->
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="image">
+                <mat-header-cell *matHeaderCellDef> image </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <!--<img src="{{decodeImage(element.imageUrl)}}" alt="">-->
+                    <div class="wrap">
+                       
+                        <iframe [src]="decodeImage(element.imageUrl)" class="frame"></iframe>
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="categoria">
+                <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    {{element.categoryName}}
+                    <!--                    <input type="hidden" name="accessID" [(ngModel)]="element.sku" >-->
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row
+                    *matRowDef="let row; columns: displayedColumns;"
+            ></mat-row>
+        </mat-table>
+    </div>
+
+</div>
+

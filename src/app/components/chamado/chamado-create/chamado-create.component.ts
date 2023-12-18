@@ -8,6 +8,9 @@ import { Tecnico } from 'src/app/models/tecnico';
 import { ChamadoService } from 'src/app/services/chamado.service';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { TecnicoService } from 'src/app/services/tecnico.service';
+import {Product} from "../../../models/Product";
+import {MatTableDataSource} from "@angular/material/table";
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'app-chamado-create',
@@ -15,7 +18,7 @@ import { TecnicoService } from 'src/app/services/tecnico.service';
   styleUrls: ['./chamado-create.component.css']
 })
 export class ChamadoCreateComponent implements OnInit {
-
+  products : Product[] = [];
   chamado: Chamado = {
     prioridade: '',
     status: '',
@@ -24,8 +27,10 @@ export class ChamadoCreateComponent implements OnInit {
     tecnico: '',
     cliente: '',
     nomeCliente: '',
-    nomeTecnico: ''
-
+    nomeTecnico: '',
+    productId: 0,
+    isSolution: false,
+    solution:false,
   }
 
   clientes: Cliente[] = [];
@@ -37,28 +42,34 @@ export class ChamadoCreateComponent implements OnInit {
   observacoes: FormControl = new FormControl(null, [Validators.required])
   tecnico: FormControl = new FormControl(null, [Validators.required])
   cliente: FormControl = new FormControl(null, [Validators.required])
-
+  productId : FormControl = new FormControl(null, [Validators.required])
   constructor(
+      private service: ProductService,
     private chamadoService: ChamadoService,
     private clienteService: ClienteService,
     private tecnicoService: TecnicoService,
-    private toastService: ToastrService,
+      private toastService: ToastrService,
     private router: Router 
   ) { }
 
   ngOnInit(): void {
     this.findAllClientes();
     this.findAllTecnicos();
+    this.findAll();
   }
-
+  findAll(): void {
+    this.service.findAll().subscribe(resp => {
+      this.products = resp;
+    })
+  }
   create(): void {
     this.chamadoService.create(this.chamado).subscribe({
       next: () => {
-      this.toastService.success('Chamado criado com sucesso', 'Novo Chamado');
-      this.router.navigate(['chamados']);
+        this.toastService.success('Ticket creada exitosamente', 'Nuevo Ticket');
+        this.router.navigate(['chamados']);
       },
-    error: (erro) => {
-      this.toastService.error(erro.error.error);
+    error: (e) => {
+      this.toastService.error(e.error.error);
     } 
   })
   }
@@ -77,6 +88,7 @@ export class ChamadoCreateComponent implements OnInit {
 
   validaCampos(): boolean {
     return this.prioridade.valid &&
+        this.productId.valid &&
            this.status.valid     &&
            this.titulo.valid     &&
            this.observacoes.valid  &&
